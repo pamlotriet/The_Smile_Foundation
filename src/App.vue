@@ -1,30 +1,41 @@
 <template>
-  <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
+  <div class="logo">
+      <img src="./assets/logoSmile.png">
+  </div>
+  <div class="nav">
+    <navbar/>
   </div>
   <router-view/>
+  <div class="foot">
+    <foot/>
+  </div>
 </template>
 
+<script>
+  import navbar from './components/navbar.vue'
+  import foot from './components/foot.vue'
+
+  export default{
+    components:{
+      navbar,
+      foot
+    }
+  }
+</script>
+
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+.logo{
+  background-color: #002043;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
   text-align: center;
-  color: #2c3e50;
 }
 
-#nav {
-  padding: 30px;
+.foot{
+  position: static;
 }
-
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
+.nav a.router-link-exact-active {
   color: #42b983;
 }
 </style>
