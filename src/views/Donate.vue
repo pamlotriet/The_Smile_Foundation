@@ -33,7 +33,7 @@
                 </div>
              <div class="input">
                 <label for="expiration-date">Expiration Date</label>
-                <input type= "text" placeholder="Expiration Date" name="expiration-date" required/>
+                <input type= "month"  placeholder="Expiration Date" name="expiration-date" required/>
             </div>
             <div class="input">
                 <label for="donate-amount">Donate Amount</label>
