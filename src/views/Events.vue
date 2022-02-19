@@ -5,19 +5,15 @@
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus erat felis, imperdiet finibus mi at, pulvinar faucibus quam. Nullam in rutrum urna. Ut commodo a felis ut pellentesque. Fusce imperdiet justo sapien, et consequat diam vulputate sit amet. Etiam a diam sagittis, gravida dolor convallis, eleifend lacus. Quisque malesuada, mauris vitae interdum congue, turpis quam facilisis ipsum, vel malesuada odio diam non tortor. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Proin lacinia lacus quis fermentum laoreet. Proin interdum molestie elementum. Vivamus cursus sem non eros consequat mollis.
             Nam nisi arcu, auctor quis tellus vitae, tincidunt vulputate leo. Mauris semper urna diam, sed imperdiet turpis aliquam in. In auctor facilisis maximus. Phasellus sit amet purus magna. Donec porttitor turpis venenatis ipsum eleifend, sed varius augue mollis. Nulla imperdiet est lorem, ut aliquam leo vehicula vel. Ut quis sodales lectus. Nunc quis justo dictum, ultricies magna ut, imperdiet ex. Sed ornare fringilla porta. Vestibulum sed eros feugiat, aliquet est eu, ornare libero. Vivamus blandit velit eros, at eleifend urna ullamcorper eget.</p>
         </div>
-        <div class="filterByDate">
+        <div class="filetrBoxes">
             <select>
                 <option>Select Date</option>
                 <option  v-for="date in dates" :key="date.id">{{date}}</option>
             </select>
-        </div>
-        <div class="filterLocation">
             <select>
                 <option>Select Location</option>
                 <option  v-for="location in locations" :key="location.id">{{location}}</option>
             </select>
-        </div>
-        <div class="filterByFee">
             <select>
                 <option>Select Fee</option>
                 <option  v-for="fees in fee" :key="fees.id">R {{fees}}</option>
@@ -54,7 +50,6 @@
 </template>
 
 <script>
-
 //import variables from './variables.js'
 import axios from 'axios'
 
@@ -115,5 +110,22 @@ import axios from 'axios'
 
     .head{
         text-align: center;
+    }
+
+    .filterBox{
+        display: flex;
+        width: 100%;
+        margin-right: auto;
+        margin-left: auto;
+        text-align: center;
+    }
+
+    select{
+        width: 30%;
+        height: 40px;
+        text-align: center;
+        margin-left: 1%;
+        margin-right: 1%;
+        margin-top: 2%;
     }
 </style>

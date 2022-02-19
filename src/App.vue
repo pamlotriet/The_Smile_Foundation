@@ -1,14 +1,17 @@
 <template>
-  <div class="logo">
+  <form>
+    <div class="logo">
       <img src="./assets/logoSmile.png">
-  </div>
-  <div class="nav">
-    <navbar/>
-  </div>
-  <router-view/>
-  <div class="foot">
-    <foot/>
-  </div>
+    </div>
+    <div class="nav">
+      <navbar/>
+    </div>
+     <router-view/>
+    <div class="foot">
+      <foot/>
+    </div>
+   
+  </form>
 </template>
 
 <script>
