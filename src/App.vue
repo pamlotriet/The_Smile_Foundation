@@ -27,18 +27,26 @@
 </script>
 
 <style>
-.logo{
-  background-color: #002043;
-  width: 100%;
-  margin-left: auto;
-  margin-right: auto;
-  text-align: center;
-}
+  @import url('https://fonts.googleapis.com/css2?family=Karla&display=swap');
 
-.foot{
-  position: static;
-}
-.nav a.router-link-exact-active {
-  color: #42b983;
-}
+  *{
+    font-family: 'Karla', sans-serif;
+  }
+
+  .logo{
+    background-color: #002043;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+  }
+
+  .foot{
+    position: static;
+  }
+
+  .nav a.router-link-exact-active {
+    color: #42b983;
+  }
+  
 </style>
