@@ -1,10 +1,46 @@
 <template>
-    <form>
+    <form class="home">
         <div class="head">
             <h1>Upcomming Charity events you can attend</h1>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus erat felis, imperdiet finibus mi at, pulvinar faucibus quam. Nullam in rutrum urna. Ut commodo a felis ut pellentesque. Fusce imperdiet justo sapien, et consequat diam vulputate sit amet. Etiam a diam sagittis, gravida dolor convallis, eleifend lacus. Quisque malesuada, mauris vitae interdum congue, turpis quam facilisis ipsum, vel malesuada odio diam non tortor. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Proin lacinia lacus quis fermentum laoreet. Proin interdum molestie elementum. Vivamus cursus sem non eros consequat mollis.
             Nam nisi arcu, auctor quis tellus vitae, tincidunt vulputate leo. Mauris semper urna diam, sed imperdiet turpis aliquam in. In auctor facilisis maximus. Phasellus sit amet purus magna. Donec porttitor turpis venenatis ipsum eleifend, sed varius augue mollis. Nulla imperdiet est lorem, ut aliquam leo vehicula vel. Ut quis sodales lectus. Nunc quis justo dictum, ultricies magna ut, imperdiet ex. Sed ornare fringilla porta. Vestibulum sed eros feugiat, aliquet est eu, ornare libero. Vivamus blandit velit eros, at eleifend urna ullamcorper eget.</p>
         </div>
+        <modal @close ="toggleModal" id="modal" :ModalActive = "ModalActive">
+                <div class="modalView">
+                    <h1>Making a booking for</h1>
+                    <div class="inputinit">
+                        <label for="fname">First Name</label>
+                        <input v-model="to_name" type= "text" placeholder="First Name" name="to_name" required/>
+                    </div>
+                    <div class="input">
+                        <label for="lname">Last Name</label>
+                        <input type= "text" placeholder="Last Name" name="lname" required/>
+                    </div>
+                    <div class="input">
+                        <label for="email">Email Address</label>
+                        <input v-model="email" type= "text" placeholder="Email Address" name="email" required/>
+                    </div>
+                    <div class="input">
+                        <label for="phone">Phone</label>
+                        <input type= "text" placeholder="Phone" name="phone" required/>
+                          <label for="cardnum">Card Number</label>
+                        <input type= "text" placeholder="Card Number" name="cardnum" required/>
+                    </div>
+                    <div class="input">
+                        <label for="csv">Card CSV</label>
+                        <input type= "text" placeholder="CSV" class = "csv" name="csv" required/>
+                        <label for="expiration-date">Expiration Date</label>
+                        <input type= "month" min="2022-03" placeholder="Expiration Date" class = "date" name="expiration-date" required/>
+                         <label for="csv">People</label>
+                        <input type= "number" placeholder="Amount of people" class = "people" name="people" required/>
+                    </div>
+                    <div class="icons">
+                        <i class="fab fa-cc-visa" id="visa"></i>
+                        <i class="fab fa-cc-amex" id="amex"></i>
+                        <i class="fab fa-cc-mastercard" id="master"></i>
+                    </div>
+        </div>
+        </modal>
         <div class="filetrBoxes">
             <select>
                 <option>Select Date</option>
@@ -21,6 +57,7 @@
         </div>
         <div class="eventTable">
             <table class="eventsTable">
+                
                 <thead class="eventsHead">
                     <tr>
                         <th>Event Name</th>
@@ -41,7 +78,7 @@
                         <td>{{event.eventEndTime}}</td>
                         <td>{{event.eventLocation}}</td>
                         <td>R {{event.eventFee}}</td>
-                        <td><i class="fas fa-calendar-check" id="facebook"></i><button>Book Now</button></td>
+                        <td><i class="fas fa-calendar-check" id="facebook"></i><button type="button" @click = "toggleModal">Book Now</button></td>
                     </tr>
                 </tbody>
             </table>
@@ -52,8 +89,10 @@
 <script>
 //import variables from './variables.js'
 import axios from 'axios'
-
+import modal from '@/components/Modal.vue'
+import {ref} from 'vue'
     export default({
+ 
         data(){
             return{     
                 events:[],
@@ -63,7 +102,17 @@ import axios from 'axios'
             }
         }, 
         components:{
-
+            modal,
+        },
+        setup(){
+            const ModalActive = ref(false)
+            const toggleModal= () =>{
+                ModalActive.value = !ModalActive.value;
+            }
+            return{
+                ModalActive,
+                toggleModal
+            };
         },
         methods:{
             refreshData(){
@@ -89,6 +138,14 @@ import axios from 'axios'
 </script>
 
 <style  scoped>
+
+    .home{
+        position: relative;
+        z-index: 1;
+        align-items: center;
+        justify-content: center;
+    }
+
     table{
         width: 90%;
         height: 100%;
@@ -127,5 +184,76 @@ import axios from 'axios'
         margin-left: 1%;
         margin-right: 1%;
         margin-top: 2%;
+    }
+
+    .filetrBoxes{
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+    }
+    .modalView{
+        display: block;
+        position: relative;
+        z-index: 50;
+        background-color: aliceblue;
+        width: 70%;
+        height: 100vh;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .input{
+        display: flex;
+        align-content: center;
+        justify-content: center;
+    }
+
+    .icons{
+        display: flex;
+        align-content: center;
+        justify-content: center;
+    }
+
+     label{
+        display: block;
+        min-width: 150px;
+        padding: 2%;
+        padding-right: 0;
+        margin-top:10px;
+        font-size: 20px;
+        color: black;
+        margin-left: 5px;
+    }
+
+    input{
+        display: block;
+        align-self: center;
+        height: 30px;
+        border-radius: 25px;
+        width: 90%;
+        font-size: 14px;
+        margin: 2%;
+    }
+
+    .inputinit{
+        display: flex;
+        align-content: center;
+        justify-content: center;
+        margin-top: 5%;
+    }
+
+    #visa{
+        color: 	#0047AB;
+        font-size: 62px;
+    }
+
+    #master{
+        color: #D22B2B;
+        font-size: 62px;
+    }
+
+    #amex{
+        color: #cba135;
+        font-size: 62px;
     }
 </style>
