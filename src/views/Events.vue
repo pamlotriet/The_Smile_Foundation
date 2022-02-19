@@ -45,7 +45,7 @@
                         <td>{{event.eventEndTime}}</td>
                         <td>{{event.eventLocation}}</td>
                         <td>R {{event.eventFee}}</td>
-                        <td><i class="fas fa-calendar-check" id="facebook"></i><button>Book Now </button></td>
+                        <td><i class="fas fa-calendar-check" id="facebook"></i><button>Book Now</button></td>
                     </tr>
                 </tbody>
             </table>
@@ -93,7 +93,7 @@ import axios from 'axios'
     })
 </script>
 
-<style>
+<style  scoped>
     table{
         width: 90%;
         height: 100%;
@@ -116,5 +116,4 @@ import axios from 'axios'
     .head{
         text-align: center;
     }
-
 </style>
