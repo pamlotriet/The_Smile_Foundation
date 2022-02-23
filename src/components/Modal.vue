@@ -16,6 +16,7 @@
 <script>
 
     export default ({
+      
         props:['ModalActive'],
         setup(props, {emit}){
             const close = () =>{
@@ -67,7 +68,7 @@
     }
 
     button{
-        position: fixed;
+        position: absolute;
         padding: 20px 30px ;
         border: none;
         font-size: 16px;
@@ -76,7 +77,7 @@
         cursor: pointer;
         z-index: 50;
         right: 45%;
-        bottom: 1%;
+        bottom: 6%;
     }
 
 </style>

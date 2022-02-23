@@ -5,9 +5,9 @@
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus erat felis, imperdiet finibus mi at, pulvinar faucibus quam. Nullam in rutrum urna. Ut commodo a felis ut pellentesque. Fusce imperdiet justo sapien, et consequat diam vulputate sit amet. Etiam a diam sagittis, gravida dolor convallis, eleifend lacus. Quisque malesuada, mauris vitae interdum congue, turpis quam facilisis ipsum, vel malesuada odio diam non tortor. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Proin lacinia lacus quis fermentum laoreet. Proin interdum molestie elementum. Vivamus cursus sem non eros consequat mollis.
             Nam nisi arcu, auctor quis tellus vitae, tincidunt vulputate leo. Mauris semper urna diam, sed imperdiet turpis aliquam in. In auctor facilisis maximus. Phasellus sit amet purus magna. Donec porttitor turpis venenatis ipsum eleifend, sed varius augue mollis. Nulla imperdiet est lorem, ut aliquam leo vehicula vel. Ut quis sodales lectus. Nunc quis justo dictum, ultricies magna ut, imperdiet ex. Sed ornare fringilla porta. Vestibulum sed eros feugiat, aliquet est eu, ornare libero. Vivamus blandit velit eros, at eleifend urna ullamcorper eget.</p>
         </div>
-        <modal @close ="toggleModal" id="modal" :ModalActive = "ModalActive">
+        <modal @close ="toggleModal" id="modal" :ModalActive = "ModalActive" :eventName="eventName" :eventFee="eventFee">
                 <div class="modalView">
-                    <h1>Making a booking for</h1>
+                    <h2>--{{eventName}}--{{eventFee}}</h2>
                     <div class="inputinit">
                         <label for="fname">First Name</label>
                         <input v-model="to_name" type= "text" placeholder="First Name" name="to_name" required/>
@@ -32,8 +32,9 @@
                         <label for="expiration-date">Expiration Date</label>
                         <input type= "month" min="2022-03" placeholder="Expiration Date" class = "date" name="expiration-date" required/>
                          <label for="csv">People</label>
-                        <input type= "number" placeholder="Amount of people" class = "people" name="people" required/>
+                        <input v-model="numPeople" type= "number" placeholder="Amount of people" class = "people" name="people" required/>
                     </div>
+                    <label>{{numPeople * eventFee}}</label>
                     <div class="icons">
                         <i class="fab fa-cc-visa" id="visa"></i>
                         <i class="fab fa-cc-amex" id="amex"></i>
@@ -42,17 +43,15 @@
         </div>
         </modal>
         <div class="filetrBoxes">
-            <select>
-                <option>Select Date</option>
+            <select v-on:change="filterDate">
+                <option value="Select Date">Select Date</option>
                 <option  v-for="date in dates" :key="date.id">{{date}}</option>
+                <option value="All">All</option>
             </select>
-            <select>
+            <select v-on:change="filterLocation">
                 <option>Select Location</option>
                 <option  v-for="location in locations" :key="location.id">{{location}}</option>
-            </select>
-            <select>
-                <option>Select Fee</option>
-                <option  v-for="fees in fee" :key="fees.id">R {{fees}}</option>
+                <option value="All">All</option>
             </select>
         </div>
         <div class="eventTable">
@@ -78,7 +77,7 @@
                         <td>{{event.eventEndTime}}</td>
                         <td>{{event.eventLocation}}</td>
                         <td>R {{event.eventFee}}</td>
-                        <td><i class="fas fa-calendar-check" id="facebook"></i><button type="button" @click = "toggleModal">Book Now</button></td>
+                        <td><i class="fas fa-calendar-check" id="facebook"></i><button type="button" @click = "toggleModal(),getEventDetails(event.eventName, event.eventFee)">Book Now</button></td>
                     </tr>
                 </tbody>
             </table>
@@ -92,13 +91,17 @@ import axios from 'axios'
 import modal from '@/components/Modal.vue'
 import {ref} from 'vue'
     export default({
- 
         data(){
             return{     
                 events:[],
                 dates:[],
                 locations:[],
                 fee:[],
+                filterEvents:[],
+                noFilterEvents:[],
+                eventName: '',
+                eventFee: 0,
+                numPeople: 0
             }
         }, 
         components:{
@@ -111,14 +114,17 @@ import {ref} from 'vue'
             }
             return{
                 ModalActive,
-                toggleModal
+                toggleModal,
+
             };
         },
         methods:{
             refreshData(){
                 axios.get("https://localhost:7259/api/CharityEventsTables")
                 .then((response)=>{
-                    this.events=response.data;
+                    this.events = response.data;
+                    this.filterEvents = response.data;
+                    this.noFilterEvents = response.data;
                     //filter by unique dates
                     this.dates = this.events.map(item => item.eventDate).filter((value, index, self)=> self.indexOf(value)===index);
                     console.log(this.dates)
@@ -128,7 +134,34 @@ import {ref} from 'vue'
                     //filter by unique event fees
                     this.fee = this.events.map(item => item.eventFee).filter((value, index, self)=> self.indexOf(value)===index);
                     console.log(this.fee)
+                    //console.log(this.noFilterEvents)
                 });
+            },
+            filterDate: function(evt){
+                var filterDate = evt.target.value;
+                if(filterDate == 'All'){
+                    
+                    this.refreshData();
+                }else{
+                    this.events = this.filterEvents.filter(function(e){
+                        return e.eventDate == filterDate
+                    });
+            }},
+            filterLocation: function(evt){
+                var filterLocation = evt.target.value;
+                if(filterLocation == 'All'){
+                    
+                    this.refreshData();
+                }else{
+                    this.events = this.filterEvents.filter(function(e){
+                        return e.eventLocation == filterLocation 
+
+                    });
+            }},
+            getEventDetails: function(eventname, eventPrice){
+                //var eventName = eventname
+                this.eventFee = eventPrice
+                this.eventName = eventname
             }
         },
         mounted:function(){
@@ -197,7 +230,7 @@ import {ref} from 'vue'
         z-index: 50;
         background-color: aliceblue;
         width: 70%;
-        height: 100vh;
+        height: 95vh;
         margin-left: auto;
         margin-right: auto;
     }
