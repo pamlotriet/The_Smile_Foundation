@@ -18,7 +18,7 @@
          <div class="charity">
              <img src = "./assets/Logo-01.png" class="charity-pics"/>
              <p>Woman Against Rape was founded by Janine Rowley, a business executive and model, who once walked the international ramps for top designer fashion brands. She and her team now walk alongside rape victims, abused and molested children and adults in South African to bring comfort, care, education and upliftment to people.</p>
-            <a href="https://womanagainstrape.co.za/"> Woman Against Rape</a>
+            <a href="https://womanagainstrape.co.za/"> Women Against Rape</a>
          </div>
          <div class="charity">
              <img src = "./assets/logo.jpg" class="charity-pics"/>

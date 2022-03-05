@@ -13,8 +13,8 @@ const routes = [
     component: () => import('../views/Donate.vue')
   },
   {
-    path: '/about',
-    name: 'About',
+    path: '/involved',
+    name: 'Get Involved',
     component: () => import('../views/About.vue')
   },
   {
@@ -26,6 +26,11 @@ const routes = [
     path: '/donateAnon',
     name: 'DonateAnon',
     component: () => import('../views/DonateAnon.vue')
+  },
+  {
+    path: '/stories',
+    name: 'Stories',
+    component: () => import('../views/Stories.vue')
   },
  
 ]

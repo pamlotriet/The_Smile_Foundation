@@ -1,10 +1,11 @@
 <template>
     <form>
         <div class="topnav">
-            <router-link to="/">Home</router-link> |
-            <router-link to="/about">About</router-link>
+            <router-link to="/">Home</router-link>
+            <router-link to="/involved">Get Involved</router-link>
             <router-link to="/donate">Donate</router-link>
             <router-link to="/events">Events</router-link>
+            <router-link to="/stories">Stories</router-link>
         </div>
     </form>
 </template>
@@ -26,7 +27,7 @@
       width: 100%;
   }
   .topnav a{
-      overflow: hidden;
+ 
       float: left;
       font-size: 22px;
       padding-top: 1%;
@@ -35,7 +36,7 @@
       text-align: center;
       text-decoration: none;
       margin-top: 0%;
-      width: 25%;
+      width: 20%;
   }
   body{
       display: block;

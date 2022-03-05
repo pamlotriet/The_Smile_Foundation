@@ -6,7 +6,7 @@
                     <i @click="close" class="fas fa-times"></i>
                     <!-- Modal Content -->
                     <slot/>
-                    <button type="button">Book Now</button>
+  
                 </div>
             </transition>
         </div>
@@ -58,26 +58,18 @@
         top: 0;
         left: 0;
         background-color: rgba(255, 255, 255, 0.7);
+        
     }
 
      .modal-inner{
-        position: fixed;
+         display: flex;
+         justify-content: center;
+        position: absolute;
         z-index: 55;
         width: 100vw;
-        height: 100vh
+        height: 100vh;
+
     }
 
-    button{
-        position: absolute;
-        padding: 20px 30px ;
-        border: none;
-        font-size: 16px;
-        background-color: crimson;
-        color: white;
-        cursor: pointer;
-        z-index: 50;
-        right: 45%;
-        bottom: 6%;
-    }
-
+   
 </style>

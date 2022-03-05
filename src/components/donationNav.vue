@@ -1,7 +1,7 @@
 <template>
     <div class="donatenav">
         <router-link to="/donate">Donate</router-link> 
-        <router-link to="/donateAnon">Donate Anonymously</router-link> ||
+        <router-link to="/donateAnon">Donate Anonymously</router-link> 
     </div>
 </template>
 
@@ -27,7 +27,7 @@
         margin-left: auto;
         margin-right: auto;
         display: block;
-        width: 40%;
+        width: 60%;
         height: 90%;
         border-style: solid;
         border-color: white;

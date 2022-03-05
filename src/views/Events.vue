@@ -7,7 +7,7 @@
         </div>
         <modal @close ="toggleModal" id="modal" :ModalActive = "ModalActive" :eventName="eventName" :eventFee="eventFee">
                 <div class="modalView">
-                    <h2>--{{eventName}}--{{eventFee}}</h2>
+                    <h2 class="bookingTitle">Making a booking for {{eventName}}</h2>
                     <div class="inputinit">
                         <label for="fname">First Name</label>
                         <input v-model="to_name" type= "text" placeholder="First Name" name="to_name" required/>
@@ -22,24 +22,27 @@
                     </div>
                     <div class="input">
                         <label for="phone">Phone</label>
-                        <input type= "text" placeholder="Phone" name="phone" required/>
+                        <input type= "number" placeholder="Phone" name="phone" required/>
                           <label for="cardnum">Card Number</label>
-                        <input type= "text" placeholder="Card Number" name="cardnum" required/>
+                        <input type= "number" placeholder="Card Number" name="cardnum" required/>
                     </div>
                     <div class="input">
                         <label for="csv">Card CSV</label>
-                        <input type= "text" placeholder="CSV" class = "csv" name="csv" required/>
+                        <input type= "number" placeholder="CSV" class = "csv" name="csv" required/>
                         <label for="expiration-date">Expiration Date</label>
                         <input type= "month" min="2022-03" placeholder="Expiration Date" class = "date" name="expiration-date" required/>
                          <label for="csv">People</label>
-                        <input v-model="numPeople" type= "number" placeholder="Amount of people" class = "people" name="people" required/>
+                        <input v-model="numPeople" min="1" type= "number" placeholder="Amount of people" class = "people" name="people" required/>
                     </div>
-                    <label>{{numPeople * eventFee}}</label>
                     <div class="icons">
                         <i class="fab fa-cc-visa" id="visa"></i>
                         <i class="fab fa-cc-amex" id="amex"></i>
                         <i class="fab fa-cc-mastercard" id="master"></i>
                     </div>
+                    <label class="Total">Total: R{{numPeople * eventFee}}</label>
+                    <div class="bookButton">
+                        <button class="bookNow" type="button">Book Now</button>
+                    </div>     
         </div>
         </modal>
         <div class="filetrBoxes">
@@ -90,6 +93,7 @@
 import axios from 'axios'
 import modal from '@/components/Modal.vue'
 import {ref} from 'vue'
+
     export default({
         data(){
             return{     
@@ -115,7 +119,6 @@ import {ref} from 'vue'
             return{
                 ModalActive,
                 toggleModal,
-
             };
         },
         methods:{
@@ -245,6 +248,8 @@ import {ref} from 'vue'
         display: flex;
         align-content: center;
         justify-content: center;
+        padding: 0%;
+        margin: 0%;
     }
 
      label{
@@ -289,4 +294,36 @@ import {ref} from 'vue'
         color: #cba135;
         font-size: 62px;
     }
+
+    .bookNow{
+        position: absolute;
+        padding: 20px 30px ;
+        border: none;
+        font-size: 16px;
+        background-color: #42b983;;
+        color: #ffffff;
+        cursor: pointer;
+        z-index: 50;
+        bottom: 2%;
+    }
+
+.Total{
+    padding: 0%;
+    margin: 0%;
+    text-align: center;
+}
+
+.bookButton{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.bookingTitle{
+    text-align: center;
+    font-weight: 700;
+    font-size: 26px;
+    padding-top: 3%;
+}
 </style>
