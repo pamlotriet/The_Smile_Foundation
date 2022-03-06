@@ -23,7 +23,9 @@
         </div>
         <div class="storyCard" v-for="story in stories" :key="story.Id">
             <label class="storTitle">{{story.title}}</label>
+            <br>
             <label class="storyDisplay">{{story.story}}</label>
+            <br>
             <label class="author">{{story.name}} {{story.surname}}</label>
         </div>
     </form>
@@ -62,6 +64,7 @@ export default ({
         refreshData(){
         axios.get("https://localhost:7259/api/Stories").then((response) =>{
             this.stories = response.data
+            console.log(this.stories.story)
         })
         },
         addStory(){
@@ -81,7 +84,7 @@ export default ({
 })
 </script>
 
-<style scoped>
+<style>
 
 .storyCard{
     margin-top: 30px;
@@ -175,5 +178,14 @@ export default ({
     padding-top: 20px;
     padding-bottom: 20px;
     resize: none;
+}
+
+.storTitle{
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.author{
+    font-weight: 700;
 }
 </style>

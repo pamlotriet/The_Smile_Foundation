@@ -19,8 +19,15 @@
       <div class="head"><h1 class="involvedH1">Volunteer</h1></div>
       <div class="row1">
       <img src="../assets/volunteer.jpg"/>
-      <p class="subtext1">Join the tens of thousands of people of all ages and backgrounds who each year bring their 
-        energy and enthusiasm to the Smile Foundation's events to help raise money for charities.</p>
+       <ul class="subtext2">
+          <h4>Join the tens of thousands of people of all ages and backgrounds who each year bring their 
+        energy and enthusiasm to the Smile Foundation's events to help raise money for charities.</h4>
+          <li>Volunteer at our soup kitchens</li>
+          <li>Get in touchwith local charities to volunteer.</li>
+          <li>Volunteer to walk dogs at local animal shelters</li>
+          <li>Volunteer to provide extra learning at orphanges</li>
+        </ul>
+        <a href = "mailto:pamela.lotriet@gmail.com"><i class="fas fa-envelope" id="email"></i></a>
       </div>
   </div>
     <div class="cardInvolved">
@@ -37,22 +44,6 @@
         </ul>
       </div>
   </div>
-  <div class="cardInvolved">
-    <div class="head">
-      <h1 class="involvedH1">Contact charities individually</h1>
-    </div>
-    <div class="row1">
-    </div>
-  </div>
-  <div class="cardInvolved">
-     <div class="head">
-      <h1 class="involvedH1">Donate</h1>
-    </div>
-     <div class="row1">
-    </div>
-  </div>
-
-
 </template>
 
 <style scoped>
@@ -134,4 +125,14 @@ li{
   margin-left: 200px;
   width:35%;
 }
+
+#email{
+  color:red ;
+}
+
+ i{
+    padding: 2%;
+    font-size: 48px;
+}
+
 </style>

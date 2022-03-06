@@ -5,8 +5,7 @@
                 <div class="modal-inner">
                     <i @click="close" class="fas fa-times"></i>
                     <!-- Modal Content -->
-                    <slot/>
-  
+                    <slot/> 
                 </div>
             </transition>
         </div>

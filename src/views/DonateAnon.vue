@@ -92,7 +92,7 @@
     }
 </script>
 
-<style>
+<style scoped>
 
  .container-payment{
         display: block;

@@ -34,12 +34,13 @@
                          <label for="csv">People</label>
                         <input v-model="numPeople" min="1" type= "number" placeholder="Amount of people" class = "people" name="people" required/>
                     </div>
+                    <label class="Total">Total: R{{numPeople * eventFee}}</label>
                     <div class="icons">
                         <i class="fab fa-cc-visa" id="visa"></i>
                         <i class="fab fa-cc-amex" id="amex"></i>
                         <i class="fab fa-cc-mastercard" id="master"></i>
                     </div>
-                    <label class="Total">Total: R{{numPeople * eventFee}}</label>
+                    
                     <div class="bookButton">
                         <button class="bookNow" type="button">Book Now</button>
                     </div>     
@@ -173,7 +174,7 @@ import {ref} from 'vue'
     })
 </script>
 
-<style  scoped>
+<style scoped>
 
     .home{
         position: relative;
