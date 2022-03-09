@@ -18,7 +18,7 @@
                     </div>
                     <div class="input">
                         <label for="email">Email Address</label>
-                        <input v-model="email" type= "text" placeholder="Email Address" name="email" required/>
+                        <input v-model="toMail" type= "text" placeholder="Email Address" name="toMail" required/>
                     </div>
                     <div class="input">
                         <label for="phone">Phone</label>
@@ -42,7 +42,7 @@
                     </div>
                     
                     <div class="bookButton">
-                        <button class="bookNow" type="button">Book Now</button>
+                        <button class="bookNow" type="button" @click = "toggleModal(),sendEmail()">Book Now</button>
                     </div>     
         </div>
         </modal>
@@ -106,7 +106,9 @@ import {ref} from 'vue'
                 noFilterEvents:[],
                 eventName: '',
                 eventFee: 0,
-                numPeople: 0
+                numPeople: 0,
+                toMail: '',
+                to_name:'',
             }
         }, 
         components:{
@@ -166,10 +168,27 @@ import {ref} from 'vue'
                 //var eventName = eventname
                 this.eventFee = eventPrice
                 this.eventName = eventname
+            },
+            sendEmail(){
+                const subject = "Booking Confirmation";
+                const body = 'Hi '+ this.to_name + ', thank you for booking an event at the smile foundation';
+
+                axios.post("https://localhost:7259/api/Mail/send",
+                {
+                    ToEmail: this.toMail,
+                    Subject : subject,
+                    Body : body
+                }).then((response)=> {
+                    console.log(response);
+                })
+
+                console.log(this.toMail);
+                console.log(subject);
+                console.log(body);
             }
         },
         mounted:function(){
-            this.refreshData();
+            this.refreshData()
         }
     })
 </script>
