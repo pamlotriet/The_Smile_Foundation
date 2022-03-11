@@ -1,12 +1,13 @@
 <template>
   <form>
     <div class="logo">
-      <img src="./assets/logoSmile.png">
+      <img src="./assets/Pam_Logo.png">
     </div>
     <div class="nav">
       <navbar/>
     </div>
      <router-view/>
+     
     <div class="foot">
       <foot/>
     </div>
@@ -34,8 +35,10 @@
   }
 
   .logo{
-    background-color: #002043;
+    background-color: #2A5379;
     width: 100%;
+    padding-top: 30px;
+    padding-bottom: 30px;
     margin-left: auto;
     margin-right: auto;
     text-align: center;
@@ -46,7 +49,26 @@
   }
 
   .nav a.router-link-exact-active {
-    color: #42b983;
+    color: #F4D06A;
+    font-weight: 900;
   }
+
+  body {
+    background: linear-gradient(-45deg, #F4D06A, #5AA3BA, #ffffff,#F4D06A, #5AA3BA, #ffffff);
+    background-size: 400% 400%;
+    animation: gradient 6s ease infinite;
+}
+
+@keyframes gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
   
 </style>

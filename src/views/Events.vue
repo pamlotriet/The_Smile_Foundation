@@ -59,32 +59,22 @@
             </select>
         </div>
         <div class="eventTable">
-            <table class="eventsTable">
-                
-                <thead class="eventsHead">
-                    <tr>
-                        <th>Event Name</th>
-                        <th>Event Description</th>
-                        <th>Event Date</th>
-                        <th>Event Start</th>
-                        <th>Event End</th>
-                        <th>Event Location</th>
-                        <th>Event Fee</th>
-                    </tr>
-                </thead>
-                <tbody class="eventsBody">
-                    <tr v-for="event in events" :key="event.id">
-                        <td>{{event.eventName}}</td>
-                        <td>{{event.eventDescription}}</td>
-                        <td>{{event.eventDate}}</td>
-                        <td>{{event.eventStartTime}}</td>
-                        <td>{{event.eventEndTime}}</td>
-                        <td>{{event.eventLocation}}</td>
-                        <td>R {{event.eventFee}}</td>
-                        <td><i class="fas fa-calendar-check" id="facebook"></i><button type="button" @click = "toggleModal(),getEventDetails(event.eventName, event.eventFee)">Book Now</button></td>
-                    </tr>
-                </tbody>
-            </table>
+            <div class="flip-card" v-for="event in events" :key="event.id">
+            <div class="flip-card-inner">
+                <div class="flip-card-front">
+                    <label>{{event.eventName}}</label>
+                    <label>{{event.eventDate}}</label>
+                    <label>{{event.eventStartTime}}</label>
+                    <label>{{event.eventEndTime}}</label>
+                    <label>{{event.eventLocation}}</label>
+                    <label>{{event.eventFee}}</label>
+                </div>
+                <div class="flip-card-back">
+                    <label>{{event.eventDescription}}</label>
+                    <i class="fas fa-calendar-check" id="facebook"></i><button type="button" @click = "toggleModal(),getEventDetails(event.eventName, event.eventFee)">Book Now</button>
+                </div>    
+           </div>
+        </div>
         </div>
     </form>
 </template>
@@ -327,23 +317,91 @@ import {ref} from 'vue'
         bottom: 2%;
     }
 
-.Total{
-    padding: 0%;
-    margin: 0%;
-    text-align: center;
-}
+    .Total{
+        padding: 0%;
+        margin: 0%;
+        text-align: center;
+    }
 
-.bookButton{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-}
+    .bookButton{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
 
-.bookingTitle{
-    text-align: center;
-    font-weight: 700;
-    font-size: 26px;
-    padding-top: 3%;
-}
+    .bookingTitle{
+        text-align: center;
+        font-weight: 700;
+        font-size: 26px;
+        padding-top: 3%;
+    }
+
+   .flip-card {
+        background-color: transparent;
+        border: 1px solid #f1f1f1;
+        perspective: 1000px;
+        height: 10cm;
+        width: 100%;
+        margin: 0%;
+        margin-right: 1cm;
+        margin-left: 1cm;
+        align-content: center;
+        text-decoration: none;
+         z-index: 1;
+    }
+
+    .flip-card-inner {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        text-align: center;
+        transition: transform 0.6s;
+        transform-style: preserve-3d;
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+         z-index: 1;
+    }
+
+    .flip-card:hover .flip-card-inner {
+        transform: rotateY(180deg);
+    }
+
+    .flip-card-front, .flip-card-back {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+         z-index: 1;
+    }
+
+    .flip-card-front {
+        display: flex;
+        flex-direction: column;
+        background-color: #ffffff;
+        color: black;
+        border-radius: 10px;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .flip-card-back {
+        display: flex;
+        flex-direction: column;
+        background-color: #ffffff;
+        color: #000000;
+        transform: rotateY(180deg);
+        border-radius: 10px;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .eventTable{
+        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(20%,20%));
+        gap: 5%;
+        margin-top: 5%;
+        margin-bottom: 150px;
+    }
 </style>

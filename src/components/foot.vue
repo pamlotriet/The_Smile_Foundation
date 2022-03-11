@@ -15,7 +15,7 @@
 
 <style >
     .foot{
-        background-color: #002043;
+        background-color: #2A5379;
         width: 100%;
         height: 100%;
         bottom: 0;

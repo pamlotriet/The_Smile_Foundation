@@ -1,6 +1,4 @@
 <template>
-
- 
   <div class="cardInvolved">
     <div class="head"><h1 class="involvedH1">Launch a fundraising campaign</h1></div>
     <div class="row1">
@@ -65,6 +63,10 @@
     border-radius: 70%;
   }
 
+  .involvedH1{
+    padding-top: 30px;
+  }
+
   hr{
     color: #000000;
     font-weight: 700;
@@ -75,19 +77,18 @@
     display: flex;
     flex-direction: row;
     width: 90%;
-    background: #B6D0E2;
+    background:white;
     margin-left: 50px;
     color: #000000;
-    text-align: center;
+    text-align: left;
     padding-bottom: 40px;
   }
 
 
   .cardInvolved, .head,  .involvedH1{
-    margin-top: 30px;
     display: block;
     width: 80%;
-    background: #B6D0E2;
+    background:white;
     margin-left: auto;
     margin-right: auto;
     color: #000000;
@@ -95,7 +96,10 @@
   }
 
   .cardInvolved{
-    box-shadow: 4px 4px 4px 4px rgba(0, 0, 0, 0.5);
+      margin-top: 30px;
+      background:white;
+      box-shadow: -5px 10px 15px rgba(0, 0, 0, 0.2);
+      border-radius: 10px;
   }
 
   .title{
@@ -116,14 +120,11 @@
 
   .subtext1{
     padding-left: 100px;
+    text-align: left;
   }
 
 li{
-  margin: 0;
-  padding: 0;
   text-align: left;
-  margin-left: 200px;
-  width:35%;
 }
 
 #email{
@@ -135,4 +136,7 @@ li{
     font-size: 48px;
 }
 
+.subtext2{
+  text-align: left;
+}
 </style>

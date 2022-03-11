@@ -132,6 +132,7 @@
         color: white;
         font-weight: 700;
         bottom: 0;
+        border-radius: 10px;
     }
     
     .payment{
@@ -141,9 +142,7 @@
         display: block;
         width: 70%;
         height: 82%;
-        border-style: solid;
-        border-color: white;
-        border-width: 10px;
+        border-radius: 10px;
         background-color: whitesmoke;
         margin-bottom: 100px;
     }

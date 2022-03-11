@@ -22,7 +22,7 @@
       background-color: #566D7E;
   }
   .topnav{
-      background-color:#002043;
+      background-color:#2A5379;
       overflow: hidden;
       width: 100%;
   }
@@ -42,9 +42,9 @@
       display: block;
       margin: 0%;
       padding: 0%; 
-      background-color: #315174;
+      background-color: whitesmoke;
   }
   .topnav a:hover{
-      color:#566D7E ;
+      color:#F4D06A ;
   }
 </style>

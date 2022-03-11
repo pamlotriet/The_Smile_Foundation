@@ -29,9 +29,7 @@
         display: block;
         width: 60%;
         height: 90%;
-        border-style: solid;
-        border-color: white;
-        border-width: 10px;
+        border-radius: 10px;
         background-color: whitesmoke;
     }
 
@@ -47,6 +45,7 @@
       background-color:#002043;
       overflow: hidden;
       width: 100%;
+      border-radius: 10px;
     }
 
   .donatenav a{
