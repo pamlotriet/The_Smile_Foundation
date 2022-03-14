@@ -2,9 +2,9 @@
 
  <form class="container">
      
-     <p>Charities to donate to in South Africa</p>
-     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus erat felis, imperdiet finibus mi at, pulvinar faucibus quam. Nullam in rutrum urna. Ut commodo a felis ut pellentesque. Fusce imperdiet justo sapien, et consequat diam vulputate sit amet. Etiam a diam sagittis, gravida dolor convallis, eleifend lacus. Quisque malesuada, mauris vitae interdum congue, turpis quam facilisis ipsum, vel malesuada odio diam non tortor. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Proin lacinia lacus quis fermentum laoreet. Proin interdum molestie elementum. Vivamus cursus sem non eros consequat mollis.
-        Nam nisi arcu, auctor quis tellus vitae, tincidunt vulputate leo. Mauris semper urna diam, sed imperdiet turpis aliquam in. In auctor facilisis maximus. Phasellus sit amet purus magna. Donec porttitor turpis venenatis ipsum eleifend, sed varius augue mollis. Nulla imperdiet est lorem, ut aliquam leo vehicula vel. Ut quis sodales lectus. Nunc quis justo dictum, ultricies magna ut, imperdiet ex. Sed ornare fringilla porta. Vestibulum sed eros feugiat, aliquet est eu, ornare libero. Vivamus blandit velit eros, at eleifend urna ullamcorper eget.</p>
+     <p class="heading">Charities to donate to in South Africa</p>
+     <p class="subtext">Today, 690 million people around the world will go to bed on an empty stomach. But your gift means that one less child will be at risk of starvation tonight. Your gift can save a woman's life, a child's life, a pet's  life. 
+        Make a donation to the men, women, childeren and animals in need. Give them hope to survive another day.</p>
         
      <div class="div-container">
 
@@ -25,11 +25,11 @@
             <div class="flip-card-inner">
                 <div class="flip-card-front">
                     <img src = "./assets/war.jpg" class="charity-pics"/> 
-                    <p>Hope SA</p>
+                    <p>Women Against Rape</p>
                 </div>
                 <div class="flip-card-back">
-                   <p>HOPE SA feeding HOPE to all people in  South Africa and beyond.  We  strive to provide at least the basic human needs for mankind. Together with, Each One Help One, we can create positive impact in communities. Our core Mission is to align to the Act Now Campaign and align to the 17 UN Sustainable Development Goals(UNSDG’s). It is good to be blessed, and better to be a Blessing.</p>
-                   <a class = "navigate" href="https://bordercollierescue.co.za/"><i id = "web" class="fas fa-globe">    Website</i></a>
+                    <p>Woman Against Rape was founded by Janine Rowley, a business executive and model, who once walked the international ramps for top designer fashion brands. She and her team now walk alongside rape victims, abused and molested children and adults in South African to bring comfort, care, education and upliftment to people.</p>
+                   <a class = "navigate" href="https://womanagainstrape.co.za/"><i id = "web" class="fas fa-globe">    Website</i></a>
                 </div>
             </div>
         </div>
@@ -38,11 +38,11 @@
             <div class="flip-card-inner">
                 <div class="flip-card-front">
                     <img src = "./assets/Logo-01.png" class="charity-pics"/>
-                    <p>Women Against Rape</p>
+                    <p>Hope SA</p>
                 </div>
                 <div class="flip-card-back">
-                    <p>Woman Against Rape was founded by Janine Rowley, a business executive and model, who once walked the international ramps for top designer fashion brands. She and her team now walk alongside rape victims, abused and molested children and adults in South African to bring comfort, care, education and upliftment to people.</p>
-                    <a class = "navigate" href="https://bordercollierescue.co.za/"><i id = "web" class="fas fa-globe">    Website</i></a>
+                     <p>HOPE SA feeding HOPE to all people in  South Africa and beyond.  We  strive to provide at least the basic human needs for mankind. Together with, Each One Help One, we can create positive impact in communities. Our core Mission is to align to the Act Now Campaign and align to the 17 UN Sustainable Development Goals(UNSDG’s). It is good to be blessed, and better to be a Blessing.</p>
+                    <a class = "navigate" href="https://hopesa.org/"><i id = "web" class="fas fa-globe">    Website</i></a>
                 </div>
             </div>
         </div>
@@ -55,7 +55,7 @@
                 </div>
                 <div class="flip-card-back">
                     <p>The Jones Safe House, near Kommetjie is a registered non-profit organization that takes on abused, abandoned, and neglected children and abused/addicted mothers.</p>
-                    <a class = "navigate" href="https://bordercollierescue.co.za/"><i id = "web" class="fas fa-globe">    Website</i></a>
+                    <a class = "navigate" href="http://www.thejonessafehouse.org/"><i id = "web" class="fas fa-globe">    Website</i></a>
                 </div>
             </div>
         </div>
@@ -70,7 +70,7 @@
                 </div>
                 <div class="flip-card-back">
                    <p>We act as a connector, a collaborator, a catalyst, and an advocate for change. For 40 years and in more than 40 countries, we help communities forge new paths to prosperity in the face of disaster, poverty, and the impacts of climate change.</p>
-                   <a class = "navigate" href="https://bordercollierescue.co.za/"><i id = "web" class="fas fa-globe">    Website</i></a>
+                   <a class = "navigate" href="https://www.mercycorps.org/"><i id = "web" class="fas fa-globe">    Website</i></a>
                 </div>
             </div>
         </div>
@@ -83,7 +83,7 @@
                 </div>
                 <div class="flip-card-back">
                      <p>With your tremendous support, we change the world for children through innovative programmes, bold campaigns, independent advocacy and high-impact partnerships.</p>
-                     <a class = "navigate" href="https://bordercollierescue.co.za/"><i id = "web" class="fas fa-globe">    Website</i></a>
+                     <a class = "navigate" href="https://www.savethechildren.org.za/"><i id = "web" class="fas fa-globe">    Website</i></a>
                 </div>
             </div>
         </div>
@@ -96,7 +96,7 @@
                 </div>
                 <div class="flip-card-back">
                     <p>We work across multiple sectors to deliver effective and robust health programmes that have a lasting impact. We’re proud to consistently be named as one of the most cost-effective non-profit initiatives globally.</p>
-                    <a class = "navigate" href="https://bordercollierescue.co.za/"><i id = "web" class="fas fa-globe">    Website</i></a>
+                    <a class = "navigate" href="https://schistosomiasiscontrolinitiative.org/"><i id = "web" class="fas fa-globe">    Website</i></a>
                 </div>
             </div>
         </div>
@@ -109,7 +109,7 @@
                 </div>
                 <div class="flip-card-back">
                     <p>We exist to rescue children and create families. Each child that enters our care has experienced profound loss, trauma, and/or abandonment. Many of our most vulnerable children have been abandoned specifically due to stigmas surrounding their extra medical needs.</p>
-                    <a class = "navigate" href="https://bordercollierescue.co.za/"><i id = "web" class="fas fa-globe">    Website</i></a>
+                    <a class = "navigate" href="https://www.acresoflove.org/"><i id = "web" class="fas fa-globe">    Website</i></a>
                 </div>
             </div>
         </div>
@@ -125,7 +125,7 @@
                 </div>
                 <div class="flip-card-back">
                     <p>Ethelbert Child & Youth Care Centre (CYCC) is a registered non-profit and public benefits organisation (NPO & PBO) specialising in the full-time care, rehabilitation and support of vulnerable, abandoned and abused children within Kwa-Zulu Natal.</p>
-                    <a class = "navigate" href="https://bordercollierescue.co.za/"><i id = "web" class="fas fa-globe">    Website</i></a>
+                    <a class = "navigate" href="https://ethelbert.co.za/"><i id = "web" class="fas fa-globe">    Website</i></a>
                 </div>
             </div>
         </div>
@@ -138,7 +138,7 @@
                 </div>
                 <div class="flip-card-back">
                     <p>We are a leading non-profit, pro-life, rescue, rehabilitation and re-homing shelter in South Africa. We have over 350 animals in our care at any given time.</p>
-                    <a class = "navigate" href="https://bordercollierescue.co.za/"><i id = "web" class="fas fa-globe">    Website</i></a>
+                    <a class = "navigate" href="https://woodrockanimalrescue.co.za/"><i id = "web" class="fas fa-globe">    Website</i></a>
                 </div>
             </div>
         </div>
@@ -151,7 +151,7 @@
                 </div>
                 <div class="flip-card-back">
                     <p>The mission of Carehaven is to provide residential shelter and refuge to abused woman and their children, the opportunity for them to find healing and to learn skills that will empower them to cope as self-reliant members of society.</p>
-                    <a class = "navigate" href="https://bordercollierescue.co.za/"><i id = "web" class="fas fa-globe">    Website</i></a>
+                    <a class = "navigate" href="https://wcwsm.org.za/"><i id = "web" class="fas fa-globe">    Website</i></a>
                 </div>
             </div>
         </div>
@@ -164,7 +164,7 @@
                 </div>
                 <div class="flip-card-back">
                      <p>The Saartjie Baartman Centre for Women and Children (SBCWC ) is a one-stop centre for women and children who are survivors of abuse. Our vision is the creation of a safe and secure society and a human rights culture where women and children are empowered to exercise their full rights.</p>
-                     <a class = "navigate" href="https://bordercollierescue.co.za/"><i id = "web" class="fas fa-globe">    Website</i></a>
+                     <a class = "navigate" href="https://www.saartjiebaartmancentre.org.za/"><i id = "web" class="fas fa-globe">    Website</i></a>
                 </div>
                 
             </div>
@@ -232,7 +232,7 @@
 
     .flip-card {
         background-color: transparent;
-        border: 1px solid #f1f1f1;
+        border: none;
         perspective: 1000px;
         height: 10cm;
         width: 25%;
@@ -309,5 +309,19 @@
         align-items: center;
     }
 
+    .heading{
+        font-size: 32px;
+        color: #2A5379;
+        font-weight: 900;
+        padding-top: 20px;
+        font-family: Avenir next condensed;
+    }
 
+    .subtext{
+        font-size: 16px;
+        color: #000000;
+        font-weight: 600;
+        padding-top: 20px;
+        font-family: Avenir;
+    }
 </style>

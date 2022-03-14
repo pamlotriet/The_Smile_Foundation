@@ -1,17 +1,18 @@
 <template>
-    <form class="container-payment" @submit.prevent="sendEmail">
-        <h1>Payment Information</h1>
+    <form class="container-payment">
+        <p class="heading">Payment Information</p>
         <modal @close ="toggleModal" class="modal" id="modal" :ModalActive = "ModalActive" >
              <div class="modalView">
                 <p>Thank you for your generous doantion</p>
                 <i class="fas fa-hand-holding-usd" id="finalDonation"></i>
+                <p>To The Smile Foundation</p>
              </div>
         </modal>
         <div class="payment">
             <navDonate/>
             <div class="rows">
                 <i class="fas fa-info-circle" id="infoIcon"></i>
-                <p>Please note that donations made in this way will not go to a specific charity, but will be used and distributed as the The smile Foundation deem necessary</p>
+                <p class="infoP">Please note that donations made in this way will not go to a specific charity, but will be used and distributed as the The smile Foundation deem necessary</p>
             </div>
              <div class="rows">
                 <label for="email">Email Address</label>
@@ -29,7 +30,7 @@
                 <label for="expiration-date">Expiration Date</label>
                 <input type= "month"  placeholder="Expiration Date" name="expiration-date" required/>
                 <label for="donate-amount">Donate Amount</label>
-                <input type= "text" placeholder="Donate Amount" min="1" name="donate-amount" required/>
+                <input v-model="amount" type= "text" placeholder="Donate Amount" min="1" name="amount" required/>
             </div>
             <div class="icon">
                 <i class="fab fa-cc-visa" id="visa"></i>
@@ -37,7 +38,7 @@
                 <i class="fab fa-cc-mastercard" id="master"></i>
             </div>
             <div class="donate-buton" >
-                <button type="submit">Donate</button>
+                <button type="button" @click="sendEmail()">Donate</button>
             </div>
         </div>
         <router-view/>
@@ -46,7 +47,7 @@
 
 <script>
   import navDonate from '../components/donationNav.vue';
-  import emailjs from 'emailjs-com';
+  import axios from 'axios'
   import modal from '../components/Modal.vue'
   import {ref} from 'vue'
 
@@ -59,6 +60,7 @@
     data() {
         return {
             email:'',
+            amount:0,
         }
     },  
     setup(){
@@ -72,22 +74,22 @@
             };
         },
     methods: {
-        sendEmail(e) {
-        try {
-            emailjs.sendForm('service_ff3ffiu', 'template_l7o9usn', e.target, 'user_kig9hwNSt8MhkuitTcb50', {
-           email: this.email
-           })
-            this.toggleModal();
+         sendEmail(){
+                const subject = "The Smile Foundation";
+                const body = 'Hi anonymous donar thank you for your generous donation of R '+
+                this.amount + ' to The Smile Foundation';
 
-            console.log("Success")
+                axios.post("https://localhost:7259/api/Mail/send",
+                {
+                    ToEmail: this.email,
+                    Subject : subject,
+                    Body : body
+                }).then((response)=> {
+                    console.log(response);
+                })
 
-        } catch(error) {
-            console.log({error})
-        }
-        // Reset form field
-            this.email = ''
-            this.message = ''
-        },
+               this.toggleModal();
+            }
     }
     }
 </script>
@@ -108,7 +110,7 @@
         margin-left: auto;
         margin-right: auto;
         display: block;
-        width: 70%;
+        width: 80%;
         height: 82%;
         border-radius: 10px;
         background-color: whitesmoke;
@@ -116,35 +118,41 @@
         border-radius: 10px;
     }
 
-     label{
+    .infoP{
+         padding: 15px;
+         margin: 0px;
+    }
+
+    label{
         min-width: 101px;
-        padding-bottom: 2%;
         padding-right: 1%;
         margin-left: 1%;
-        margin-top:20px;
-        font-size: 20px;
+        font-size:18px;
         color: black;
         text-align: center;
     }
 
     input{
         text-align: center;
-        height: 50px;
+        height: 30px;
         border-radius: 25px;
-        width: 90%;
+        width: 80%;
         font-size: 14px;
+        margin-bottom: 50px;
     }
 
-    button{
+       button{
         text-align: center;
         height: 50px;
-        width: 100%;
+        width: 80%;
+        border: none;
         font-size: 32px;
-        background-color:#002043;
+        background-color:#5AA3BA;
         color: white;
         font-weight: 700;
-        bottom: 0;
         border-radius: 10px;
+        margin-left: auto;
+        margin-right: auto;
     }
 
      i{
@@ -158,7 +166,7 @@
         bottom: 0;
         display: block;
         text-align: center;
-        margin-bottom: 108px;
+
     }
 
     #visa{
@@ -174,9 +182,11 @@
     }
 
     .donate-buton{
-        display: block;
+        display: flex;
         width: 100%;
-        bottom: 0;
+        margin-left: auto;
+        margin-right: auto;
+        padding-bottom: 50px;
     }
 
     .rows{
@@ -200,24 +210,22 @@
         text-align: center;
     }
 
-     .modalView{
+.modalView{
         display: block;
         position: relative;
         justify-content: center;
         text-align: center;
         z-index: 50;
-        background-color: aliceblue;
+        background-color:#F4D06A;
         width: 400px;
-        height: 200px;
+        height: auto;
         margin-top: auto;
         margin-bottom: auto;
-        border: solid;
-        border-color: #002043;
     }
 
       .modalView p{
         font-size: 18px;
-        color: #000000;
+        color: #2A5379;
         text-align: center;
         padding: 2px;
         font-weight: 700;
@@ -229,8 +237,20 @@
     }
 
     #infoIcon{
-        font-size: 48px;
-        color: #002043;
+        font-size: 32px;
+        color: #2A5379;
         padding: 10px;
+    }
+
+    .heading{
+        font-size: 32px;
+        color: #2A5379;
+        font-weight: 900;
+        padding-top: 20px;
+        font-family: Avenir next condensed;
+    }
+
+       #finalDonation{
+        color: #2A5379;
     }
 </style>

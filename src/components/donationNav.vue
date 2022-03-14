@@ -38,11 +38,12 @@
     }
 
    .donatenav a.active{
-      background-color: #566D7E;
+       color:#F4D06A;
+       font-weight: 900;
     }
 
   .donatenav{
-      background-color:#002043;
+      background-color:#2A5379;
       overflow: hidden;
       width: 100%;
       border-radius: 10px;
@@ -62,7 +63,8 @@
     }
 
     .donatenav a.router-link-exact-active {
-        color: #42b983;
+        color:  #F4D06A;
+        font-weight: 900;
     }
 </style>
  

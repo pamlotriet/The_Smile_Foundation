@@ -1,6 +1,6 @@
 <template>
-    <form class="container-payment" @submit.prevent="sendEmail">
-        <h1>Payment Information</h1>
+    <form class="container-payment">
+        <p class="heading">Payment Information</p>
         <modal @close ="toggleModal" class="modal" id="modal" :ModalActive = "ModalActive" >
              <div class="modalView">
                 <p>Thank you for your generous doantion</p>
@@ -21,7 +21,7 @@
                 <label for="fname">First Name</label>
                 <input v-model="to_name" type= "text" placeholder="First Name" name="to_name" required/>
                 <label for="lname">Last Name</label>
-                <input type= "text" placeholder="Last Name" name="lname" required/>
+                <input v-model="to_lastname" type= "text" placeholder="Last Name" name="to_lastname" required/>
             </div>
              <div class="row">
                 <label for="email">Email Address</label>
@@ -39,7 +39,7 @@
                 <label for="expiration-date">Expiration Date</label>
                 <input type= "month"  placeholder="Expiration Date" name="expiration-date" required/>
                 <label for="donate-amount">Donate Amount</label>
-                <input min="1" type= "number" placeholder="Donate Amount" name="donate-amount" required/>
+                <input v-model="amount" min="1" type= "number" placeholder="Donate Amount" name="amount" required/>
             </div>
             <div class="icons">
                 <i class="fab fa-cc-visa" id="visa"></i>
@@ -47,7 +47,7 @@
                 <i class="fab fa-cc-mastercard" id="master"></i>
             </div>
             <div class="donate-buton">
-                <button type="submit">Donate</button>
+                <button type="button" @click="sendEmail()">Donate</button>
             </div>
         </div>
         <router-view/>
@@ -57,7 +57,7 @@
 
 <script>
   import navDonate from '../components/donationNav.vue'
-  import emailjs from 'emailjs-com';
+  import axios from 'axios'
   import modal from '../components/Modal.vue'
   import {ref} from 'vue'
 
@@ -83,6 +83,9 @@
                 to_name:'',
                 charity:'',
                 email:'',
+                to_lastname:'',
+                amount:0,
+
                  charities:[{key:0,value:'Border Collie Rescue'},{key:1,value:'Women Against Rape'},{key:2,value:'Hope SA'}
                  ,{key:3,value:'Saartjie Baartman Centre for women and childeren'}, {key:4,value:'Jones Safe House'}, {key:5,value:'Mercy Corps'},
                  {key:6,value:'Save the childeren'},{key:7,value:'SCI Foundation'},{key:8,value:'Acres of Love'},{key:9,value:'Ethelbert Childeren\'s Home'},
@@ -90,23 +93,22 @@
             }
         },
         methods: {
-            sendEmail(e) {
-            try {
-                emailjs.sendForm('service_ff3ffiu', 'template_bh2swso', e.target, 'user_kig9hwNSt8MhkuitTcb50', {
-                email: this.email,
-                to_name: this.to_name,
-                charity: this.charity,
-                
-            })
-                this.toggleModal();
-            console.log("Success")
+            sendEmail(){
+                const subject = "The Smile Foundation";
+                const body = 'Hi '+ this.to_name + ' '+  this.to_lastname +
+                ', thank you for your generous donation of R '+this.amount + ' to the '+ this.charity;
 
-            } catch(error) {
-                console.log({error})
+                axios.post("https://localhost:7259/api/Mail/send",
+                {
+                    ToEmail: this.email,
+                    Subject : subject,
+                    Body : body
+                }).then((response)=> {
+                    console.log(response);
+                })
+
+               this.toggleModal();
             }
-            // Reset form field
-                this.email = ''
-            },
         },   
     }
 
@@ -126,13 +128,15 @@
     button{
         text-align: center;
         height: 50px;
-        width: 100%;
+        width: 80%;
+        border: none;
         font-size: 32px;
-        background-color:#002043;
+        background-color:#5AA3BA;
         color: white;
         font-weight: 700;
-        bottom: 0;
         border-radius: 10px;
+        margin-left: auto;
+        margin-right: auto;
     }
     
     .payment{
@@ -140,7 +144,7 @@
         margin-left: auto;
         margin-right: auto;
         display: block;
-        width: 70%;
+        width: 80%;
         height: 82%;
         border-radius: 10px;
         background-color: whitesmoke;
@@ -149,21 +153,20 @@
 
     label{
         min-width: 101px;
-        padding-bottom: 2%;
         padding-right: 1%;
         margin-left: 1%;
-        margin-top:30px;
-        font-size: 20px;
+        font-size:18px;
         color: black;
         text-align: center;
     }
 
     input{
         text-align: center;
-        height: 50px;
+        height: 30px;
         border-radius: 25px;
-        width: 90%;
+        width: 80%;
         font-size: 14px;
+        margin-bottom: 50px;
     }
 
      i{
@@ -174,7 +177,7 @@
         width: 100%;
         margin-left: auto;
         margin-right: auto;
-        margin-top: 15px;
+        margin-top: 10px;
         display: block;
         text-align: center;
     }
@@ -215,9 +218,11 @@
     }
 
     .donate-buton{
-        display: block;
+        display: flex;
         width: 100%;
-        bottom: 0;
+        margin-left: auto;
+        margin-right: auto;
+        padding-bottom: 50px;
     }
 
     .charity-choose{
@@ -226,6 +231,7 @@
         height: 40px;
         margin-top: 20px;
         margin-bottom: 50px;
+        border-radius: 25px;
     }
 
     .dontaionDetail{
@@ -246,18 +252,16 @@
         justify-content: center;
         text-align: center;
         z-index: 50;
-        background-color: aliceblue;
+        background-color:#F4D06A;
         width: 400px;
-        height: 200px;
+        height: auto;
         margin-top: auto;
         margin-bottom: auto;
-        border: solid;
-        border-color: #002043;
     }
 
       .modalView p{
         font-size: 18px;
-        color: #000000;
+        color: #2A5379;
         text-align: center;
         padding: 2px;
         font-weight: 700;
@@ -268,4 +272,15 @@
         justify-content: center;
     }
 
+    .heading{
+        font-size: 32px;
+        color: #2A5379;
+        font-weight: 900;
+        padding-top: 20px;
+        font-family: Avenir next condensed;
+    }
+
+    #finalDonation{
+        color: #2A5379;
+    }
 </style>

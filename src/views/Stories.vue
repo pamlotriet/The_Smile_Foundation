@@ -91,16 +91,18 @@ export default ({
     display: flex;
     flex-direction: column;
     width: 80%;
-    background: aliceblue;
+    background: #ffffff;
     margin-left: auto;
     margin-right: auto;
+    border-radius: 10px;
     color: #000000;
     text-align: center;
-    box-shadow: 4px 4px 4px 4px rgba(0, 0, 0, 0.5);
+    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.2);
 }
 
 .addStory{
     width: 100%;
+    display: flex;
     justify-content: center;
     text-align: center;
     padding-top: 20px;
@@ -108,15 +110,21 @@ export default ({
 }
 
 .addStoryBtn{
-    width: 200px;
-    height: 40px;
-    border-radius: 25px;
-    box-shadow: 4px 4px 4px 4px rgba(0, 0, 0, 0.5);
-    background-color: #B6D0E2;
+    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.2);
     font-size: 14px;
     font-weight: 700;
     border: none;
     z-index: 0;
+    display: flex;
+    margin-top: 40px;
+    background-color: #5AA3BA;
+    border: none;
+    width: 150px;
+    height: 50px;
+    border-radius: 10px;
+    justify-content: center;
+    align-items: center;
+    color: #ffffff;
 }
 
 .addStoryBtn:hover{
@@ -128,14 +136,17 @@ export default ({
     flex-direction: column;
     text-align: center;
     z-index: 50;
-    background-color: aliceblue;
+    background-color: #ffffff;
     width: 70%;
     height: 90%;
     margin-top: auto;
     margin-bottom: auto;
-    border: solid;
-    border-color: #002043;
+    border: none;
     justify-content: center;
+    border-radius: 25px;
+    margin-top: 15px;
+    box-shadow: 4px 4px 4px 4px rgba(0,0,0,0.4);
+    color:#2A5379;
 }
 
 .modalView p{
@@ -144,6 +155,7 @@ export default ({
     text-align: center;
     padding: 2px;
     font-weight: 700;
+    color:#2A5379;
 }
 
 .modal{
@@ -155,6 +167,10 @@ export default ({
     text-align: left;
     margin-left: auto;
     margin-right: auto;
+    color:#2A5379;
+    font-weight: 700;
+    margin-bottom: 10px;
+    margin-top: 10px;
 }
 
 .title, .name, .surname{
@@ -165,6 +181,9 @@ export default ({
     margin: 5px;
     margin-left: auto;
     margin-right: auto;
+    color:#2A5379;
+    box-shadow: 2px 2px 4px 4px rgba(0,0,0,0.2);
+    border: none;
 }
 
 .story{
@@ -178,6 +197,9 @@ export default ({
     padding-top: 20px;
     padding-bottom: 20px;
     resize: none;
+    color:#2A5379;
+    box-shadow: 2px 2px 4px 4px rgba(0,0,0,0.2);
+    border: none;
 }
 
 .storTitle{

@@ -65,6 +65,7 @@
 
   .involvedH1{
     padding-top: 30px;
+    font-family: Avenir next condensed;
   }
 
   hr{
@@ -111,6 +112,7 @@
     text-align: center;
     width: 100vw;
     padding-top: 20px;
+    font-family: Avenir next condensed;
   }
 
   img{
@@ -121,6 +123,8 @@
   .subtext1{
     padding-left: 100px;
     text-align: left;
+    font-family: Avenir;
+    font-size: 18px;
   }
 
 li{

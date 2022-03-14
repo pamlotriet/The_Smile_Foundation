@@ -18,13 +18,12 @@
 
 
 <style >
-  .topnav a.active{
-      background-color: #566D7E;
-  }
+
   .topnav{
       background-color:#2A5379;
       overflow: hidden;
       width: 100%;
+      
   }
   .topnav a{
  
@@ -37,6 +36,7 @@
       text-decoration: none;
       margin-top: 0%;
       width: 20%;
+      font-family: Avenir next condensed;
   }
   body{
       display: block;
