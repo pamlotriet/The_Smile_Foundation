@@ -3,7 +3,7 @@
         <p class="heading">Payment Information</p>
         <modal @close ="toggleModal" class="modal" id="modal" :ModalActive = "ModalActive" >
              <div class="modalView">
-                <p>Thank you for your generous doantion</p>
+                <p>Thank you for your generous donation</p>
                 <i class="fas fa-hand-holding-usd" id="finalDonation"></i>
                 <p>to {{this.charity}}</p>
              </div>
