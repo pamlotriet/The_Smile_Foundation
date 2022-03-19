@@ -16,21 +16,21 @@
             </div>
              <div class="rows">
                 <label for="email">Email Address</label>
-                <input v-model="email" type= "text" placeholder="Email Address" name="email" required/>
+                <input v-model="email" type= "text" placeholder="Email Address" name="email" @blur="disableButton()" required/>
                 <label for="phone">Phone</label>
-                <input type= "text" placeholder="Phone" name="phone" required/>
+                <input type= "text" placeholder="Phone" v-model="phone" name="phone" @blur="disableButton()" required/>
             </div>
              <div class="rows">
                 <label for="cardnum">Card Number</label>
-                <input type= "text" placeholder="Card Number" name="cardnum" required/>
+                <input type= "text" placeholder="Card Number" v-model="cardnum" name="cardnum" @blur="disableButton()" required/>
                 <label for="csv">Card CSV</label>
-                <input type= "text" placeholder="CSV" name="csv"/>
+                <input type= "text" placeholder="CSV" v-model="csv" name="csv" @blur="disableButton()" required/>
             </div>
              <div class="rows">
                 <label for="expiration-date">Expiration Date</label>
-                <input type= "month"  placeholder="Expiration Date" name="expiration-date" required/>
+                <input type= "month"  placeholder="Expiration Date" v-model="expiration_date" name="expiration_date" @blur="disableButton()" required/>
                 <label for="donate-amount">Donate Amount</label>
-                <input v-model="amount" type= "text" placeholder="Donate Amount" min="1" name="amount" required/>
+                <input v-model="amount" type= "text" placeholder="Donate Amount" min="1" name="amount" @blur="disableButton()" required/>
             </div>
             <div class="icon">
                 <i class="fab fa-cc-visa" id="visa"></i>
@@ -38,7 +38,7 @@
                 <i class="fab fa-cc-mastercard" id="master"></i>
             </div>
             <div class="donate-buton" >
-                <button type="button" @click="sendEmail()">Donate</button>
+                <button type="button" @click="sendEmail()" :disabled="disabled">Donate</button>
             </div>
         </div>
         <router-view/>
@@ -60,8 +60,14 @@
     data() {
         return {
             email:'',
-            amount:0,
-        }
+            amount:'',
+            cardnum:'',
+            csv:'',
+            expiration_date:'',
+            phone:'',
+            disabled:true,
+             reg: /^(([^<>()\\[\]\\.,;:\s@"]+(\.[^<>()\\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,24}))$/,   
+       }
     },  
     setup(){
             const ModalActive = ref(false)
@@ -89,9 +95,68 @@
                 })
 
                this.toggleModal();
+            },
+            disableButton(){
+
+                let currentDate = new Date();
+                if(
+                    this.email == null || this.email == "" || this.email.trim() == "" ||
+                    this.phone == null || this.phone == 0 ||     
+                    this.cardnum == null || this.cardnum == 0 ||
+                    this.phone == null ||this.phone == 0   ||
+                    this.expiration_date == null || this.expiration_date == "" ||
+                    this.amount == null || this.amount == 0 ||
+                    this.expiration_date <= currentDate)
+                {
+                    this.disabled = true;
+                        this.$toast.show("All Fields Are required", {
+                            type:"error",
+                            position:"top"
+                        });
+                }
+                else{
+                    this.disabled = false;
+                }
+
+                if(this.cardnum.length > 0 && (this.cardnum.length < 16 || this.cardnum.length >16))
+                {
+                    this.disabled = true;
+                         this.$toast.show("Card number must be 16 digits", {
+                            type:"error",
+                            position:"top"
+                        });
+                }
+
+                if(this.csv.length > 0 && (this.csv.length < 16 || this.csv.length >16))
+                {
+                    this.disabled = true;
+                         this.$toast.show("CSV number must be 3 digits", {
+                            type:"error",
+                            position:"top"
+                        });
+                }
+                
+                if(this.email.length !=0)
+                {
+                    if (this.reg.test(this.email) == false){
+                     this.disabled = true;
+                         this.$toast.show("Please Enter a valid email", {
+                            type:"error",
+                            position:"top"
+                        });
+                 }
+                }
+
+                if(this.phone.length != 0 && (this.phone.length < 10 || this.phone.length > 10)){
+                     this.disabled = true;
+                         this.$toast.show("Please Enter a valid phone number", {
+                            type:"error",
+                            position:"top"
+                        });
+                }
+     
             }
-    }
-    }
+    }}
 </script>
 
 <style scoped>
@@ -139,6 +204,8 @@
         width: 80%;
         font-size: 14px;
         margin-bottom: 50px;
+        box-shadow: 2px 2px 4px 4px rgba(0,0,0,0.2);
+        border: none;
     }
 
        button{
@@ -252,5 +319,9 @@
 
        #finalDonation{
         color: #2A5379;
+    }
+
+    button:disabled{
+        opacity: 30%;
     }
 </style>

@@ -266,6 +266,8 @@ import {ref} from 'vue'
         font-size: 14px;
         margin: 2%;
         color:#2A5379;
+        box-shadow: 2px 2px 4px 4px rgba(0,0,0,0.2);
+        border: none;
     }
 
     .inputinit{

@@ -12,34 +12,34 @@
             <navDonate/>
              <div class="charity-select">
                 <label for="charity-choose">Select Charity</label>
-                <select class="charity-choose" v-model="charity" name="charity">
+                <select class="charity-choose" v-model="charity" name="charity" @blur="disableButton()">
                     <option>Select Charity</option>
                     <option v-for="char in charities" :key="char.key">{{char.value}}</option>
                 </select>
             </div>
             <div class="row">
                 <label for="fname">First Name</label>
-                <input v-model="to_name" type= "text" placeholder="First Name" name="to_name" required/>
+                <input v-model="to_name" type= "text" placeholder="First Name" name="to_name" @blur="disableButton()" required/>
                 <label for="lname">Last Name</label>
-                <input v-model="to_lastname" type= "text" placeholder="Last Name" name="to_lastname" required/>
+                <input v-model="to_lastname" type= "text" placeholder="Last Name" name="to_lastname"  @blur="disableButton()" required/>
             </div>
              <div class="row">
                 <label for="email">Email Address</label>
-                <input v-model="email" type= "text" placeholder="Email Address" name="email" required/>
+                <input v-model="email" type= "text" placeholder="Email Address" name="email"  @blur="disableButton()" required/>
                 <label for="phone">Phone</label>
-                <input type= "text" placeholder="Phone" name="phone" required/>
+                <input type= "text" v-model="phone" placeholder="Phone" name="phone" @blur="disableButton()" required/>
             </div>
              <div class="row">
                 <label for="cardnum">Card Number</label>
-                <input type= "number" placeholder="Card Number" name="cardnum" required/>
+                <input type= "number" placeholder="Card Number" v-model="cardnum" name="cardnum"  @blur="disableButton()" required/>
                 <label for="csv">Card CSV</label>
-                <input type= "number" placeholder="CSV" name="csv" required/>
+                <input type= "number" placeholder="CSV" v-model="csv" name="csv"  @blur="disableButton()" required/>
             </div>
             <div class="row">
                 <label for="expiration-date">Expiration Date</label>
-                <input type= "month"  placeholder="Expiration Date" name="expiration-date" required/>
+                <input type= "month"  placeholder="Expiration Date" v-model="expiration_date" name="expiration_date"  @blur="disableButton()" required/>
                 <label for="donate-amount">Donate Amount</label>
-                <input v-model="amount" min="1" type= "number" placeholder="Donate Amount" name="amount" required/>
+                <input v-model="amount" min="1" type= "number" placeholder="Donate Amount" name="amount"  @blur="disableButton()"  required/>
             </div>
             <div class="icons">
                 <i class="fab fa-cc-visa" id="visa"></i>
@@ -47,7 +47,7 @@
                 <i class="fab fa-cc-mastercard" id="master"></i>
             </div>
             <div class="donate-buton">
-                <button type="button" @click="sendEmail()">Donate</button>
+                <button type="button" @click="sendEmail()" :disabled="disabled" >Donate</button>
             </div>
         </div>
         <router-view/>
@@ -84,8 +84,13 @@
                 charity:'',
                 email:'',
                 to_lastname:'',
-                amount:0,
-
+                amount:"",
+                disabled: true,
+                phone:"",
+                cardnum: "",
+                csv: "",
+                expiration_date: '',
+                reg: /^(([^<>()\\[\]\\.,;:\s@"]+(\.[^<>()\\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,24}))$/,
                  charities:[{key:0,value:'Border Collie Rescue'},{key:1,value:'Women Against Rape'},{key:2,value:'Hope SA'}
                  ,{key:3,value:'Saartjie Baartman Centre for women and childeren'}, {key:4,value:'Jones Safe House'}, {key:5,value:'Mercy Corps'},
                  {key:6,value:'Save the childeren'},{key:7,value:'SCI Foundation'},{key:8,value:'Acres of Love'},{key:9,value:'Ethelbert Childeren\'s Home'},
@@ -108,7 +113,69 @@
                 })
 
                this.toggleModal();
-            }
+            },
+            disableButton(){
+
+                let currentDate = new Date();
+
+                if(this.charity == null || this.charity == "" || 
+                    this.to_name == null || this.to_name == "" || this.to_name.trim() == "" ||
+                    this.to_lastname == null || this.to_lastname == "" ||this.to_lastname.trim() == "" ||
+                    this.email == null || this.email == "" || this.email.trim() == "" ||
+                    this.phone == null || this.phone == 0 ||     
+                    this.cardnum == null || this.cardnum == 0 ||
+                    this.phone == null ||this.phone == 0   ||
+                    this.expiration_date == null || this.expiration_date == "" ||
+                    this.amount == null || this.amount == 0 ||
+                    this.expiration_date <= currentDate)
+                {
+                    this.disabled = true;
+                }
+                else{
+                    this.disabled = false;
+                }
+                //let date =  moment(String(this.expiration_date.getMonth())).format('MM/DD/YYYY hh:mm')
+                console.log(this.expiration_date <= (currentDate))
+                console.log(new Date(this.expiration_date).getMonth()+1)
+                console.log("0"+(currentDate.getMonth()+1))
+
+                if(this.cardnum.length > 0 && (this.cardnum.length < 16 || this.cardnum.length >16))
+                {
+                    this.disabled = true;
+                         this.$toast.show("Card number must be 16 digits", {
+                            type:"error",
+                            position:"top"
+                        });
+                }
+
+                if(this.csv.length > 0 && (this.csv.length < 16 || this.csv.length >16))
+                {
+                    this.disabled = true;
+                         this.$toast.show("CSV number must be 3 digits", {
+                            type:"error",
+                            position:"top"
+                        });
+                }
+                
+                if(this.email.length !=0)
+                {
+                    if (this.reg.test(this.email) == false){
+                     this.disabled = true;
+                         this.$toast.show("Please Enter a valid email", {
+                            type:"error",
+                            position:"top"
+                        });
+                 }
+                }
+
+                if(this.phone.length != 0 && (this.phone.length < 10 || this.phone.length > 10)){
+                     this.disabled = true;
+                         this.$toast.show("Please Enter a valid phone number", {
+                            type:"error",
+                            position:"top"
+                        });
+                }
+            },
         },   
     }
 
@@ -167,6 +234,8 @@
         width: 80%;
         font-size: 14px;
         margin-bottom: 50px;
+        box-shadow: 2px 2px 4px 4px rgba(0,0,0,0.2);
+        border: none;
     }
 
      i{
@@ -232,6 +301,8 @@
         margin-top: 20px;
         margin-bottom: 50px;
         border-radius: 25px;
+        box-shadow: 2px 2px 4px 4px rgba(0,0,0,0.2);
+        border: none;
     }
 
     .dontaionDetail{
@@ -282,5 +353,9 @@
 
     #finalDonation{
         color: #2A5379;
+    }
+
+    button:disabled{
+        opacity: 30%;
     }
 </style>
