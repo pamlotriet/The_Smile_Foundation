@@ -1,7 +1,7 @@
 <template>
     <div class="donatenav">
         <router-link to="/donate">Donate</router-link> 
-        <router-link to="/donateAnon">Donate Anonymously</router-link> ||
+        <router-link to="/donateAnon">Donate Anonymously</router-link> 
     </div>
 </template>
 
@@ -27,11 +27,9 @@
         margin-left: auto;
         margin-right: auto;
         display: block;
-        width: 40%;
+        width: 60%;
         height: 90%;
-        border-style: solid;
-        border-color: white;
-        border-width: 10px;
+        border-radius: 10px;
         background-color: whitesmoke;
     }
 
@@ -40,13 +38,15 @@
     }
 
    .donatenav a.active{
-      background-color: #566D7E;
+       color:#F4D06A;
+       font-weight: 900;
     }
 
   .donatenav{
-      background-color:#002043;
+      background-color:#2A5379;
       overflow: hidden;
       width: 100%;
+      border-radius: 10px;
     }
 
   .donatenav a{
@@ -63,7 +63,8 @@
     }
 
     .donatenav a.router-link-exact-active {
-        color: #42b983;
+        color:  #F4D06A;
+        font-weight: 900;
     }
 </style>
  
