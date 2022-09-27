@@ -51,24 +51,5 @@
   .nav a.router-link-exact-active {
     color: #F4D06A;
     font-weight: 900;
-  }
-
-  body {
-    background: linear-gradient(-45deg, #F4D06A, #5AA3BA, #ffffff,#F4D06A, #5AA3BA, #ffffff);
-    background-size: 400% 400%;
-    animation: gradient 6s ease infinite;
-}
-
-@keyframes gradient {
-    0% {
-        background-position: 0% 50%;
-    }
-    50% {
-        background-position: 100% 50%;
-    }
-    100% {
-        background-position: 0% 50%;
-    }
-}
-  
+  }  
 </style>
